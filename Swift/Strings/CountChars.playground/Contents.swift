@@ -20,3 +20,23 @@ func countCharsB(inputA: String, char: Character) -> Int {
         $1 == char ? $0 + 1 : $0
     }
 }
+print(countCharsB(inputA: "The rain in Spain", char: "a"))
+print(countCharsB(inputA: "Mississippi", char: "i"))
+
+// Using NSCountedSet
+func countCharsC(inputA: String, inputB: String) -> Int {
+    let array = inputA.map { String($0) }
+    let counted = NSCountedSet(array: array)
+    return counted.count(for: inputB)
+}
+print(countCharsC(inputA: "The rain in Spain", inputB: "a"))
+print(countCharsC(inputA: "Mississippi", inputB: "i"))
+
+
+// Using NSCountedSet
+func countCharsD(inputA: String, inputB: String) -> Int {
+    let modified = inputA.replacingOccurrences(of: inputB, with: "")
+    return inputA.count - modified.count
+}
+print(countCharsD(inputA: "The rain in Spain", inputB: "a"))
+print(countCharsD(inputA: "Mississippi", inputB: "i"))
